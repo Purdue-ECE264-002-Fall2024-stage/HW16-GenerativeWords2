@@ -22,7 +22,7 @@ In this assignment, we’ll work with **two-word n-grams** (i.e., n = 2). Instea
 
 We would predict the next word based on two preceding words, such as what follows "cat sat".
 
-## N-gram Markov Chains: Why n = 2 is Better than n = 1
+## N-gram Markov Chains: Why n = 2 is generally Better than n = 1
 
 Using N-gram Markov chains with n = 2 (bigrams) generally improves performance compared to n = 1 (unigrams) for several reasons. Bigrams capture relationships between consecutive words, providing richer context and enhancing coherence in generated text. By considering the preceding word, bigrams help disambiguate words with multiple meanings, leading to more accurate predictions. Text generated with bigrams tends to be more fluent and natural, as it reflects common word pairings. Hopefully, this will be apparent in the text you guys generate when compared to the unigram markov chain from hw15.
 
@@ -72,10 +72,14 @@ The `MarkovModel` structure holds the entire Markov chain for the input data. It
 
 These structures are interconnected for data management within the N-gram model. The `MarkovModel` serves as the entry point, providing access to the linked list of `MarkovModelNode` structures, each containing two `Word` elements and its associated list of possible next words.
 
+### Notes
+
+The time complexity of generating words with this implementation is worse than it would be with a hashing implementation but also easier to do. You have the choice of whether you want to allocate memory statically or dynamically for this assignment. Static helper functions can be used. Checking the transition matrix output can help a lot with debugging.
+
 
 
 ## Instructions
 1. Implement the provided `train_markov_model` function to handle two-word n-grams instead of single words.
-2. Implement the `free_markov_model` function to successfully free all the allocated memory.
+2. Implement the `free_markov_model` function to successfully free all the potentially allocated memory.
 3. Write more test cases to ensure your implementation works.
 4. Submit generate.c to gradescope for grading.
