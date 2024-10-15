@@ -12,6 +12,18 @@ void free_markov_model(MarkovModel* model) {
     // to do. Check Readme for more details
 }
 
+
+// helper function for generating words
+int find_word_pair(MarkovModel* model, const Word* word1, const Word* word2) {
+    for (int i = 0; i < model->node_count; i++) {
+        if (strcmp(model->nodes[i].word1.word, word1->word) == 0 &&
+            strcmp(model->nodes[i].word2.word, word2->word) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 void generate_text(MarkovModel* model, size_t num_words) {
     if (model->node_count == 0) {
         printf("No data to generate text from.\n");
